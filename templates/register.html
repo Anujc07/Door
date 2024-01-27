@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+	
+  <head>
+    {% load static %}
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/add_property/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="static/add_property/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="static/add_property/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/add_property/css/style.css">
+
+    <title>Create Account</title>
+  </head>
+  <body class="img js-fullheight" style="background-image: url(static/login/images/bg.jpg);">
+    <div class="container-fluid nav-bar bg-transparent">
+      <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+          <a href="#" class="navbar-brand d-flex align-items-center text-center">
+              <div class="icon p-2 me-2">
+                  <img class="img-fluid" src="static/img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
+              </div>
+              <h1 class="m-0 text-primary">DoorBell</h1>
+          </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+                      <div class="navbar-nav ms-auto">
+                          <a href="{% url 'index' %}" class="nav-item nav-link active">Home</a>
+                          <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+                          <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                         
+                      </div>
+          </div>
+      </nav>
+  </div>
+
+  <div class="d-lg-flex half">
+    <div class="bg order-1 order-md-2" style="background-image: url('static/login/images/bg.jpg');"></div>
+    <div class="contents order-2 order-md-1">
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-7 py-5">
+            <h3>Property Details</h3>
+            <p class="mb-4">Doorbell is the place to sell/rent your Property</p>
+            <form action="" method="POST" enctype="multipart/form-data">
+             {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group first">
+                    <label for="user_name">Full Name</label>
+                    <input type="text" name="username" class="form-control" placeholder="Rakesh Kumar">
+                  </div>    
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group first">
+                    <label for="c_adhaar">Adhaar Number</label>
+                    <input type="Number" name="c_adhaar" class="form-control" placeholder="121212 343434" >
+                  </div>    
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group first">
+                    <label for="c_phone">Phone Number</label>
+                    <input type="Number" name="c_phone" class="form-control" placeholder="+91 1234364758">
+                  </div>    
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group first">
+                    <label for="email">Mail Address</label>
+                    <input type="email" name="email" class="form-control" placeholder="rakesh@gmail.com">
+                  </div>    
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group first">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="**********">
+                  </div>    
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group first">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="Password" name="confirm_password" class="form-control" placeholder="*********">
+                  </div>    
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select City</label>
+                    <select class="form-control" name="c_city" id="exampleFormControlSelect1">
+                      <option value="Bhopal">Bhopal</option>
+                      <option value="Indore">Indore</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="exampleFormControlSelect1">User Type </label>
+                      <select class="form-control" name="c_usertype" id="exampleFormControlSelect1">
+                        <option value="c_owner">Owner</option>
+                        <option value="c_tenant">Tenant</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group first">
+                    <label for="c_fulladdress">Full Address</label>
+                    <input type="text" name="c_fulladdress" class="form-control" placeholder="B20 MP Nagar">
+                  </div>    
+                </div>
+              </div>
+              <button type="submit" class="btn px-5 btn-primary">Create</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script src="static/add_property/js/jquery-3.3.1.min.js"></script>
+    <script src="static/add_property/js/popper.min.js"></script>
+    <script src="static/add_property/js/bootstrap.min.js"></script>
+    <script src="static/add_property/js/main.js"></script>
+  </body>
+</html>

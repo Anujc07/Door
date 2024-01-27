@@ -1,0 +1,184 @@
+{% extends 'base.html' %} {% block content%}
+
+
+<div class="container mt-3">
+  <form  method="POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row jumbotron box8">
+      <div class="col-sm-12 mx-t3 mb-4">
+        <h2 class="text-center text-primary">Fill Property Detail</h2>
+      </div>
+        <div class="col-sm-4 form-group">
+          <label for="Country">Listing Type <span style="color:red;">*</span></label>
+        <select class="form-control custom-select browser-default" name="listingtype">
+          <option value="Sell">For sell</option>
+          <option value="Rent">For rent</option>
+        </select>
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="Country">City <span style="color:red;">*</span></label>
+        <select class="form-control custom-select browser-default" name="cityname" id="citySelect">
+          <option value="Bhopal">Bhopal</option>
+          <option value="Indore">Indore</option>
+          <option value="Jablpur">Jablpur</option>
+          <option value="Gwalior">Gwalior</option>
+        </select>
+        </div>
+        
+        
+       <div class="col-sm-6 form-group">
+        <label for="ownername">Owner Name </label>
+        <input type="text" class="form-control" name="email"  placeholder="Enter your Name" required readonly>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="ownername" placeholder="Enter your email." required readonly>
+      </div>
+      <script>
+        {% if user.is_authenticated %}
+            var ownername = "{{ user.username }}";
+            var email = "{{ user.email }}";
+    
+            document.getElementsByName('ownername')[0].value = ownername;
+            document.getElementsByName('email')[0].value = email;
+        {% endif %}
+      </script>
+      <div class="col-sm-4 form-group">
+        <label for="address">Full Address(House Number) <span style="color:red;">*</span></label>
+        <input type="address" class="form-control" name="address"  id="addressInput" placeholder="House 00, MP Nagar" required>
+
+      </div> 
+      <div class="col-sm-2 form-group">
+        <label for="Number">PIN Code <span style="color:red;">*</span></label>
+        <input type="Number" class="form-control" name="pincode"  placeholder="404040" required>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="phonenumber">Contact Number <span style="color:red;">*</span></label>
+        <input type="Number" class="form-control" name="phonenumber" placeholder="1234567893" required>
+      </div>
+      <div class="col-sm-4 form-group">
+        <label for="Image">Property pictures <span style="color:red;">*</span></label>
+        <input type="file" class="form-control" name="Image" accept="image/"  required>
+      </div>
+      <div class="col-sm-2 form-group">
+        <label for="price">Room Price <span style="color:red;">*</span></label>
+        <input type="Number" class="form-control" name="roomprice" placeholder="Room Price" required>
+      </div>
+      <div class="col-sm-2 form-group">
+        <label for="Number">Number Of Rooms <span style="color:red;">*</span></label>
+        <input type="Number" class="form-control" name="nroom" placeholder="02" required>
+      </div>
+      <div class="col-sm-2 form-group">
+        <label for="Number">Number Of Bathroom <span style="color:red;">*</span></label>
+        <input type="Number" class="form-control" name="nbath" placeholder="01" required>
+      </div>
+      <div class="col-sm-2 form-group">
+        <label for="Number">Area <span style="color:red;">*</span></label>
+        <input type="Number" class="form-control" name="area" placeholder="700 Sq." required>
+      </div>
+     
+      <div class="col-sm-4 form-group">
+        <label for="number">Year Property Built </label>
+        <input type="Number" name="property_year" class="form-control" placeholder="Enter the year the property was built" >
+      </div>
+      <div class="col-sm-2 form-group">
+        <label for="Country">Room variety <span style="color:red;">*</span></label>
+        <select class="form-control custom-select browser-default" name="room_var">
+          <option value="SingleRoom">Single Room</option>
+          <option value="Single+Kitchen">Single+Kitchen</option>
+          <option value="1BHK">1BHK</option>
+          <option value="2BHK">2BHK</option>
+          <option value="3BHK">3BHK</option>
+          <option value="4BHK">4BHK</option>
+        </select>
+      </div> 
+      
+      <div class="col-sm-6 form-group">
+        <label for="propertyYearBuilt">Property Description <span style="color:red;">*</span></label>
+        <textarea class="form-control" name="propertydes" rows="3" placeholder="Please provide a description of the property" required></textarea>
+    </div>
+    <div class="col-sm-2 form-group">
+      <label for="propertyYearBuilt">Get Location <span style="color:red;">*</span></label>
+      <button onclick="getLocation()" class="form-control float-right">Click</button>
+    </div> 
+    <div class="col-sm-2 form-group">
+      <label for="Latitude">Latitude</label>
+      <input type="number" step="any" class="form-control" name="latitude" id="latitudeInput" placeholder="Latitude" required>
+    </div>
+    <div class="col-sm-2 form-group">
+      <label for="Longitude">Longitude</label>
+      <input type="number" step="any" class="form-control" name="longitude" id="longitudeInput" placeholder="Longitude" required>
+    </div>
+      <div class="col-sm-12">
+        <input type="checkbox" class="form-check d-inline" id="chb" required><label for="chb" class="form-check-label">&nbsp;I accept all terms and conditions.
+        </label>
+      </div>
+
+      <div class="col-sm-12 form-group mb-0">
+        <button type="submit" class="btn btn-primary float-right">Submit</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+{% comment %} ===============================  {% endcomment %}
+{% comment %} <div class="col-sm-6 form-group">
+        <label for="sex">Gender</label>
+        <select id="sex" class="form-control browser-default custom-select">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="unspesified">Unspecified</option>
+        </select>
+      </div>
+      <div class="col-sm-2 form-group">
+        <label for="cod">Country code</label>
+        <select class="form-control browser-default custom-select">
+          <option data-countryCode="US" value="1" selected>USA (+1)</option>
+          <option data-countryCode="GB" value="44">UK (+44)</option>
+          <option disabled="disabled">Other Countries</option>
+          <option data-countryCode="DZ" value="213">Algeria (+213)</option>
+          <option data-countryCode="AD" value="376">Andorra (+376)</option>
+          <option data-countryCode="AO" value="244">Angola (+244)</option>
+          <option data-countryCode="AI" value="1264">Anguilla (+1264)</option>
+          <option data-countryCode="AG" value="1268">Antigua &amp; Barbuda (+1268)</option>
+          <option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
+        </select>
+      </div>
+      <div class="col-sm-4 form-group">
+        <label for="tel">Phone</label>
+        <input type="tel" name="phone" class="form-control" id="tel" placeholder="Enter Your Contact Number." required>
+      </div> {% endcomment %}
+      {% comment %} <div class="col-sm-6 form-group">
+        <label for="pass">Password</label>
+        <input type="Password" name="password" class="form-control" id="pass" placeholder="Enter your password." required>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="pass2">Confirm Password</label>
+        <input type="Password" name="cnf-password" class="form-control" id="pass2" placeholder="Re-enter your password." required>
+      </div> {% endcomment %}
+
+<script>
+        var x = document.getElementById("demo");
+        
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } else { 
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
+        
+        function showPosition(position) {
+          var latitudeInput = document.getElementById("latitudeInput");
+          var longitudeInput = document.getElementById("longitudeInput");
+        
+          latitudeInput.value = position.coords.latitude;
+          longitudeInput.value = position.coords.longitude;
+        }
+</script>
+
+
+
+
+
+{% endblock %}

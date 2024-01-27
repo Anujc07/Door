@@ -1,0 +1,477 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<style>
+    #header {
+        background: #080808;
+        background-image: url(static/img/bg.jpg);
+        width: 100%;
+        background-size: cover;
+        position: center;
+    }
+
+    .container {
+        padding: 10px 10px;
+    }
+
+    .header-text {
+        color: white;
+        margin: 20%;
+        font-size: 30px;
+    }
+
+    .header-text h1 {
+        color: white;
+        font-size: 60px;
+        margin-top: 20px;
+    }
+
+    .header-text h1 span {
+        color: #186F65;
+    }
+
+    .about-1 {
+        margin-right: ;
+    }
+
+    .col-md-6 img {
+        border-radius: 15px;
+    }
+
+
+    % comment %========about=========% endcomment % #about {
+        margin-top: 5%;
+    }
+
+    .tab-titles {
+        display: flex;
+        margin: 20px 0 40px;
+    }
+
+    .tab-links {
+        margin-right: 50px;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        position: relative;
+
+    }
+
+    .tab-links::after {
+        content: '';
+        width: 0;
+        height: 3px;
+        background: #186F65;
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        transition: 0.5s;
+    }
+
+    .tab-links.active-link::after {
+        width: 50%;
+
+    }
+
+    .tab-contents ul li {
+        list-style: none;
+        margin: 10px 0;
+    }
+
+    .tab-contents ul li span {
+        color: #186F65;
+        font-size: 14px;
+    }
+
+    .tab-contents {
+        display: none;
+    }
+
+    .tab-contents.active-tab {
+        display: block;
+    }
+
+    #services {
+        padding: 30px 0;
+    }
+
+    .services-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 40px;
+        margin-top: 50px;
+    }
+
+    .services-list div {
+        background: #186F65;
+        padding: 40px;
+        font-size: 13px;
+        font-weight: 300;
+        border-radius: 10px;
+        transition: background 0.5s, transform 0.5s;
+    }
+
+    .services-list div i {
+        color: white;
+        font-size: 50px;
+        margin-bottom: 30px;
+    }
+
+    .services-list p {
+        color: white;
+    }
+
+    .services-list div h2 {
+        font-size: 30px;
+        font-weigth: 50px;
+        margin-bottom: 15px;
+    }
+
+    .services-list div a {
+        text-decoration: none;
+        color: white;
+        font-size: 12px;
+        margin-top: 15px;
+        display: inline-block;
+    }
+
+    .services-list div:hover {
+        border: 0px solid #186F65;
+        background: white;
+        transform: translateY(-10px);
+        color: #186F65;
+    }
+
+    .services-list div:hover i {
+        color: #186F65;
+    }
+
+    .services-list div:hover p {
+        color: #186F65;
+    }
+
+    .services-list div:hover a {
+        color: #186F65;
+    }
+
+    #portfolio {
+        padding: 50px 0;
+    }
+
+    .work-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 40px;
+        margin-top: 50px;
+    }
+
+    .work {
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .work img {
+        width: 100%;
+        border-radius: 10px;
+        display: block;
+        transition: transform 0.5s;
+    }
+
+    .layer {
+        width: 100%;
+        height: 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), #186F65);
+        border-radius: 10px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 40px;
+        text-align: center;
+        font-size: 14px;
+        transition: height 0.5s;
+    }
+
+    .layer h3 {
+        color: white;
+        font-weight: 200;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    .layer a {
+        margin-top: 20px;
+        font-size: 30px;
+        color: #186F65;
+        text-decoration: none;
+        line-height: 60px;
+        background: #fff;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        text-align: center;
+
+    }
+
+    .work:hover img {
+        transform: scale(1.1);
+    }
+
+    .work:hover .layer {
+        height: 100%;
+    }
+
+    .layer p {
+        font-size:18px;
+        color: #fff;
+    }
+
+    .btnn {
+        display: block;
+        margin: 50px auto;
+        width: fit-content;
+        border: 1px solid #186F65;
+        padding: 14px 50px;
+        border-radius: 6px;
+        text-decoration: none;
+        color: #186F65;
+        transition: background 0.5s;
+    }
+
+    .btnn:hover {
+        color: white;
+        background: #186F65;
+    }
+
+    .contact-l p {
+        margin: 30px 0 30px 0;
+
+    }
+
+    .contact-l p i {
+        color: #186F65;
+        margin-right: 15px;
+        font-size: 25px;
+    }
+
+    .social-icon {
+        margin-top: 30px;
+
+    }
+
+    .social-icon i {
+        text-decoration: none;
+        font-size: 30px;
+        margin-right: 15px;
+        display:inline-block;
+    }
+
+    .social-icon i:hover {
+        color: #186F65;
+    }
+
+    .contact-r form {
+        width: 100%;
+    }
+
+    form input,
+    form textarea {
+        width: 100%;
+        border: 0;
+        outline: none;
+        background: #186F65;
+        padding: 15px;
+        margin: 15px 0;
+        color: white;
+        font-size: 18px;
+        border-radius: 6px;
+    }
+
+    form input::placeholder {
+        color: white;
+    }
+
+    form textarea::placeholder {
+        color: white;
+    }
+</style>
+<div id="header" style="height:700px">
+    <div class="container">
+        <div class="header-text">
+            <p>Web Developer</p>
+            <h1>Hi, I`m <span>anuj choubey</span><br>From Bhopal</h1>
+        </div>
+    </div>
+</div>
+
+{% comment %} =======about====== {% endcomment %}
+<div id="about" style="margin-top:5%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 about-1">
+                <img src="static/img/anuj03.jpg" class=img-fluid>
+            </div>
+            <div class="col-md-6 about-2">
+                <h1 style="color:#198754;">About Me</h1>
+                <p>I'm a final year Computer Science student focusing on Cybersecurity with an emerging interest in web
+                    development using Django. While my cybersecurity knowledge is in its early stages, I'm eager to
+                    learn more about securing digital systems and data.<br><br>
+                    I've had practical exposure through an internship, gaining hands-on experience in Dhiyotech Pvt Ltd.
+                    This experience ignited my passion to delve deeper into Web Development.
+                </p>
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('Skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('Experience')">Experience</p>
+                    <p class="tab-links" onclick="opentab('Education')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="Skills">
+                    <ul>
+                        <li><span>Django Developer</span><br>Building secure, scalable web apps with Django is my
+                            passion.
+                        </li>
+                        <li><span>Frontend Developer</span><br>Using HTML, CSS, and JavaScript to build interactive and
+                            dynamic websites.
+                        </li>
+                        <li><span>Python development</span><br>Python enthusiast, code craftsman, creating elegant
+                            solutions, mastering algorithms, scripting innovations.
+                        </li>
+                        <li><span>Basic PHP</span><br>Crafting dynamic web applications, PHP empowers seamless backend
+                            functionality.
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="Experience">
+                    <ul>
+                        <li><span>June To September</span><br>Internship</li>
+                        <li><span>University Level Projects</span><br>Netflix clone, Encryption Web Application</li>
+                        <li><span>Python</span><br>Development with python</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="Education">
+                    <ul>
+                        <li><span>10th 2018</span><br>State Board, pipariya</li>
+                        <li><span>12th 2020</span><br>State Board, pipariya</li>
+                        <li><span>BTech CS 2020-2024</span><br>Sage University, Bhopal</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="services">
+    <div class="container">
+        <h1 style="color:#198754;" class="text-center">My Services</h1>
+        <div class="services-list">
+            <div>
+                <i class="fa-solid fa-code"></i>
+                <h2>Web Design</h2>
+                <p>I create websites that are easy to use and look great. Using HTML, CSS, and JavaScript, I build
+                    user-friendly web applications with designs that are both attractive and intuitive for people to
+                    navigate and enjoy.</p>
+                <a href="#">learn more </a>
+            </div>
+            <div>
+                <i class="fa-solid fa-crop"></i>
+                <h2>Django Developer</h2>
+                <p>"I am skilled in developing web applications using Django, a powerful framework in Python. With
+                    Django's robust features, I create secure and efficient web solutions, managing data seamlessly and
+                    delivering user-friendly interfaces for enhanced functionality and usability.</p>
+                <a href="#">learn more </a>
+            </div>
+            <div>
+                <i class="fa-brands fa-python"></i>
+                <h2>PHP Development</h2>
+                <p>"I excel in creating PHP-based websites and have a basic grasp of WordPress fundamentals. My
+                    expertise lies in leveraging PHP to craft dynamic, custom websites, and employing WordPress for
+                    building user-friendly, content-manageable platforms tailored to specific needs.</p>
+                <a href="#">learn more </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="portfolio">
+    <div class="container">
+        <h1 style="color:#198754;" class="text-center">Portfolio</h1>
+        <div class="work-list">
+            <div class="work">
+                <img src="static/img/file.png">
+                <div class="layer">
+                    <h3>Python Bot</h3>
+                    <p>I've crafted a Python Django bot utilizing Selenium, capable of retrieving website data. This bot navigates web pages and extracts frontend information. Using automation, it efficiently accesses and collects data from various websites, simplifying the process.
+                    </p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="static/img/data-encryption.png">
+                <div class="layer">
+                    <h3>Encryption Web Site</h3>
+                    <p>I've created a JavaScript-based website for encryption and decryption. This site uses a password as a key, ensuring secure data handling. It encrypts and decrypts information, providing a secure platform for sensitive data handling.
+                    </p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <img src="static/img/keylogger.png">
+                <div class="layer">
+                    <h3>Keylogger</h3>
+                    <p>I've developed a fundamental Python keylogger. This program discreetly records keystrokes, capturing user input. It logs keyboard interactions, offering insights into user activity for various purposes such as debugging or monitoring.
+                    </p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btnn"> See More</a>
+    </div>
+</div>
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 contact-l">
+                <h1 style="color:#198754;">Contact Me</h1>
+                <p><i class="fa-solid fa-paper-plane" ></i>choubeyanuj44@gmail.com</p>
+                <p> <i class="fa-solid fa-phone"></i>+91 6261590239</p>
+                <div class="social-icon">
+                    {% comment %} <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-x"></i> {% endcomment %}
+                    <i href="https://www.instagram.com/_anuzz_choubey_12_07/" class="fa-brands fa-instagram"></i>
+                    <a href="https://www.linkedin.com/in/anuj-choubey-9542a9249/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/Anujc07" target="_blank"><i class="fa-brands fa-github"></i></a>
+                </div>
+                <a href="static/resume/Anuj-re.pdf" Download class="btnn btn">Download CV</a>
+            </div>
+            <div class="col-md-6 contact-r">
+                <form action="">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="Message" id="" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btnn btn2">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+
+    function opentab(tabname) {
+        for (tablink of tablinks) {
+            tablink.classList.remove("active-link");
+        }
+        for (tabcontent of tabcontents) {
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link")
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+</script>
+{% endblock %}

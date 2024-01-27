@@ -1,0 +1,132 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <h1 class="m-0 text-primary">DoorBell</h1>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+          </li>
+          {% if user.is_authenticated %} 
+            {% if request.user|has_group:"Owner"%}
+              <li class="nav-item">
+                <a class="nav-link btn btn-primary"
+                  href="{% url 'add-property' %}"
+                  style="border-radius: 9px; padding: 16px; margin: 9px 8px; color: white; box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;">Add Property</a>
+              </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" style="margin-left: 20px;" data-bs-toggle="modal" data-bs-target="#profileModal">
+                <i class="fas fa-user-circle"></i>
+              </a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-primary register-btn"
+                style="border-radius: 9px; padding: 16px; margin: 9px 8px; color: white; box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;"
+                data-bs-toggle="modal" data-bs-target="#registrationModal">Sign in</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <script>document.addEventListener("DOMContentLoaded", function() {
+    const navToggle = document.getElementById("navToggle");
+    const navbarCollapse = document.getElementById("navbarCollapse");
+  
+    navToggle.addEventListener("click", function() {
+      if (navbarCollapse.classList.contains("show")) {
+        navbarCollapse.classList.remove("show");
+      } else {
+        navbarCollapse.classList.add("show");
+      }
+    });
+  
+    // Close the navigation menu when a link is clicked
+    const navLinks = document.querySelectorAll(".nav-link");
+    navLinks.forEach(function(link) {
+      link.addEventListener("click", function() {
+        navbarCollapse.classList.remove("show");
+      });
+    });
+  });
+  </script>
+
+
+
+
+  <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+    <a href="{% url 'index' %}" class="navbar-brand d-flex align-items-center text-center">
+      {% comment %}
+      <div class="icon p-2 me-2">
+        <img
+          class="img-fluid"
+          src="static/img/icon-deal.png"
+          alt="Icon"
+          style="width: 30px; height: 30px"
+        />
+      </div>
+      {% endcomment %}
+      <h1 class="m-0 text-primary" style="text-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;">DoorBell</h1>
+    </a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto">
+        <a href="{% url 'index' %}" class="nav-item nav-link active">Home</a>
+        <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+        <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+        {% if user.is_authenticated %} 
+        {% if request.user|has_group:"Owner"%} 
+
+            <a href="{% url 'add-property' %}" class="nav-item btn-primary nav-link"
+            style="border-radius: 9px;
+                      padding: 16px;
+                      margin: 9px 8px;
+                      color: white;
+                      box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                      ">Add Property</a>
+              
+        {% endif %} 
+        
+        {% comment %}
+          <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a> {%
+          endcomment %} {% comment %}
+          <a href="{% url 'dashboard' %}" class="nav-item nav-link"
+><i class="fas fa-user-circle"></i
+></a>
+          {% endcomment %}
+          <a style="margin-left:20px;" type="button" class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#profileModal">
+            <i class="fas fa-user-circle"></i>
+          </a>
+        {% else %}
+            <a type="button" class="nav-item nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+            
+            <a style="border-radius: 9px;
+                      padding: 16px;
+                      margin: 9px 8px;
+                      color: white;
+                      box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                      "
+              type="button" class="nav-item btn-primary nav-link register-btn" data-bs-toggle="modal" data-bs-target="#registrationModal">SignUp</a
+>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+  

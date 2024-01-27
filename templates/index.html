@@ -1,0 +1,320 @@
+
+{% extends 'base.html' %} {% block content%}
+
+<div class="alert alert-primary alert-dismissible fade{% if messages %} show{% endif %}" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 1000;{% if not messages %} display: none;{% endif %}">
+  {% if messages %}
+      <ul class="messages" style="list-style: none; padding-left: 0;">
+          {% for message in messages %}
+              <li>{{ message }}</li>
+          {% endfor %}
+      </ul>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  {% endif %}
+</div>
+
+
+<!-- Header Start -->
+<div class="container-fluid header bg-white p-0">
+  <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+    <div class="col-md-6 p-5 mt-lg-5" style="margin-top:80px !important;">
+      <h1 class="display-5 animated fadeIn mb-4">
+        The House <span class="text-primary">That</span> Likes To Say Yes.
+      </h1>
+      <p>Welcome home</p>
+      <!-- Add more content here -->
+      <p>🏡 Welcome to our cozy room rental platform! Discover your perfect stay in our wide range of meticulously
+        curated rooms. Whether you're a traveler looking for a temporary abode, a student seeking comfortable dorms, or
+        a professional on a business trip, we've got you covered. Explore a diverse selection of rooms, each designed to
+        offer you the utmost comfort and a home-away-from-home experience. Our mission is to make your room rental
+        journey as seamless and delightful as possible. 🌟</p>
+
+      <p><span class="rounded" style="background:#186F65; color:white; padding:5px;">Book your dream room today and
+          embark on a memorable stay with us! 😊<span></p>
+      <!-- Login Button -->
+      <a class="btn btn-primary animated fadeIn" role="button" data-bs-toggle="modal"
+        data-bs-target="#registrationModal">Sign in</a>
+    </div>
+
+
+    <div class="col-md-6 animated fadeIn">
+      <div class="owl-carousel header-carousel">
+        <div class="owl-carousel-item">
+          <img class="img-fluid" style="height: 500px" src="static/img/BHOPAL.jpg" alt="" />
+        </div>
+        <div class="owl-carousel-item">
+          <img class="img-fluid" style="height: 500px" src="static/img/indore.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Header End -->
+
+<!-- Search Start -->
+<form method="get" action="{% url 'more_property' %}">
+  <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px">
+    <div class="container">
+      <div class="row g-2">
+        <div class="col-md-10">
+          <div class="row g-2">
+            <div class="col-md-4">
+              <input type="text" class="form-control border-0 py-3" placeholder="Search" name="servicename" />
+            </div>
+            <div class="col-md-2">
+              <select class="form-control border-0 py-3" name="city" id="city">
+                <option value="Bhopal">Bhopal</option>
+                <option value="Indore">Indore</option>
+                <option value="Jablpur">Jablpur</option>
+                <option value="Gwalior">Gwalior</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control border-0 py-3" placeholder="Min-Price" name="min_price" />
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control border-0 py-3" placeholder="Max-Price" name="max_price" />
+            </div>
+            <div class="col-md-2">
+              <select class="form-control border-0 py-3" name="roomtype" id="roomtype">
+                <option value="Sell">Sell</option>
+                <option value="Rent">Rent</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <input class="btn btn-dark border-0 w-100 py-3" type="submit" value="Search Room" />
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- Search End -->
+
+<!-- Category Start -->
+<div class="container-xxl py-5 " style="padding-top:0px !important; ">
+  <div class="container">
+    <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px">
+      <h1 class="mb-3">Property Types</h1>
+      <p>
+        Start your rental journey today and discover the perfect place to call
+        home on our website.
+      </p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+        <a class="cat-item d-block bg-light text-center rounded p-3">
+          <div class="rounded p-4 " style="box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+            <div class="icon mb-3">
+              <img class="img-fluid" src="static/img/icon-apartment.png" alt="Icon" />
+            </div>
+            <h6>Apartment</h6>
+            <span> </span>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+        <a class="cat-item d-block bg-light text-center rounded p-3">
+          <div class="rounded p-4" style="box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+            <div class="icon mb-3">
+              <img class="img-fluid" src="static/img/icon-villa.png" alt="Icon" />
+            </div>
+            <h6>Villa</h6>
+            <span> </span>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+        <a class="cat-item d-block bg-light text-center rounded p-3">
+          <div class="rounded p-4" style="box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+            <div class="icon mb-3">
+              <img class="img-fluid" src="static/img/icon-house.png" alt="Icon" />
+            </div>
+            <h6>Home</h6>
+            <span> </span>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+        <a class="cat-item d-block bg-light text-center rounded p-3">
+          <div class="rounded p-4" style="box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+            <div class="icon mb-3">
+              <img class="img-fluid" src="static/img/icon-housing.png" alt="Icon" />
+            </div>
+            <h6>Office</h6>
+            <span> </span>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+        <a class="cat-item d-block bg-light text-center rounded p-3">
+          <div class="rounded p-4" style="box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+            <div class="icon mb-3">
+              <img class="img-fluid" src="static/img/icon-building.png" alt="Icon" />
+            </div>
+            <h6>Building</h6>
+            <span> </span>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+        <a class="cat-item d-block bg-light text-center rounded p-3">
+          <div class="rounded p-4" style="box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+            <div class="icon mb-3">
+              <img class="img-fluid" src="static/img/icon-neighborhood.png" alt="Icon" />
+            </div>
+            <h6>Townhouse</h6>
+            <span> </span>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+        <a class="cat-item d-block bg-light text-center rounded p-3">
+          <div class="rounded p-4" style="box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+            <div class="icon mb-3">
+              <img class="img-fluid" src="static/img/icon-condominium.png" alt="Icon" />
+            </div>
+            <h6>Shop</h6>
+            <span> </span>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+        <a class="cat-item d-block bg-light text-center rounded p-3">
+          <div class="rounded p-4" style="box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+            <div class="icon mb-3">
+              <img class="img-fluid" src="static/img/icon-luxury.png" alt="Icon" />
+            </div>
+            <h6>Garage</h6>
+            <span> </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Category End -->
+
+<!-- About Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="about-img position-relative overflow-hidden p-5 pe-0">
+          <img class="img-fluid w-100" src="static/img/mum.jpg" style="box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;" />
+        </div>
+      </div>
+      <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+        <h1 class="mb-4">Place To Find The Perfect Property</h1>
+        <p class="mb-4">
+          Explore a wide selection of rentals for every budget and
+          preference🏠💰.
+        </p>
+        <p><i class="fa fa-check text-primary me-3"></i>User friendly</p>
+        <p><i class="fa fa-check text-primary me-3"></i>Reliable</p>
+        <p><i class="fa fa-check text-primary me-3"></i>Trusty</p>
+        <!--                        <a class="btn btn-primary py-3 px-5 mt-3" href="#">Read More</a>-->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- About End -->
+
+<!-- Property List Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="row g-0 gx-5 align-items-end">
+      <div class="col-lg-6">
+        <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+          <h1 class="mb-3">Property Listing</h1>
+          <p></p>
+        </div>
+      </div>
+      <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+        <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
+          <li class="nav-item me-2">
+            <a class="btn btn-outline-primary active" data-bs-toggle="pill">Featured</a>
+          </li>
+          <li class="nav-item me-2">
+            <a class="btn btn-outline-primary" data-bs-toggle="pill">For Sell</a>
+          </li>
+          <li class="nav-item me-0">
+            <a class="btn btn-outline-primary" data-bs-toggle="pill">For Rent</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tab-content">
+      <div id="tab-1" class="tab-pane fade show p-0 active">
+        <div class="row g-4">
+          {% for prod in detail %}
+          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="property-item rounded overflow-hidden" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+              <div class="position-relative overflow-hidden">
+                <a href="{% url 'product_detail' prod.id %}">
+                  <img style="height:250px;" class="img-fluid" src="/media/{{ prod.Image }}" alt="" /></a>
+                {% if not prod.is_booked %}
+                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                  {{prod.Listingtype}} </div>
+                {% else %}
+                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"> Booked </div>
+                {% endif %}
+                <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                  {{ prod.Room_var }}</div>
+              </div>
+              <div class="p-4 pb-0">
+                <h5 class="text-primary mb-3">{{ prod.Price }}₹</h5>
+                <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{prod.Address}}, {{prod.City}}</p>
+              </div>
+              <div class="d-flex border-top">
+                <small class="flex-fill text-center border-end py-2"><i
+                    class="fa fa-ruler-combined text-primary me-2"></i>{{prod.Area}} Sq.</small>
+                <small class="flex-fill text-center border-end py-2"><i
+                    class="fa fa-bed text-primary me-2"></i>{{prod.Number_of_rooms}} Room</small>
+                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>{{prod.Bath_room}}
+                  Bathroom</small>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+          <!--                            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">-->
+          <!--                                <a class="btn btn-primary py-3 px-5" href="">Browse More Property</a>-->
+          <!--                            </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Property List End -->
+
+<!-- Call to Action Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="bg-light rounded p-3">
+      <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, 0.3)">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+            <img class="img-fluid rounded w-100" src="" alt="" />
+          </div>
+          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <div class="mb-4">
+              <h1 class="mb-3">Contact With Our Certified Agent</h1>
+              <p>Get in Touch With Us</p>
+            </div>
+            <a href="" class="btn btn-primary py-3 px-4 me-2" style="margin-top:5px;"><i
+                class="fa fa-phone-alt me-2"></i>Make A Call</a>
+            <a href="" class="btn btn-dark py-3 px-4" style="margin-top:5px;"><i class="fa fa-calendar-alt me-2"></i>Get
+              Appoinment</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Call to Action End -->
+</div>
+</div>
+</div>
+{% endblock %}
